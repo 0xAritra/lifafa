@@ -1,0 +1,80 @@
+body {
+  background-color: #FAFAFB;
+}
+
+.box-shadow {
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+[disabled] {
+  cursor: not-allowed;
+}
+
+.ant-btn.ant-btn-primary {
+  background: #1677ff !important;
+  color: #fff !important;
+}
+
+.ant-btn.ant-btn-primary.ant-btn-dangerous {
+  background-color: #ff4d4f !important;
+}
+
+button[disabled] {
+  color: white !important;
+}
+
+.ant-modal-close-x .anticon {
+  vertical-align: middle !important;
+}
+
+.ant-select-selector {
+  background: #f5f8fa !important;
+  color: rgb(55, 65, 81) !important;
+  font-size: 0.875rem !important;
+}
+
+.ant-result-icon,
+.ant-result-extra {
+  display: flex;
+  justify-content: center;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  -webkit-scrollbar: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.ant-switch {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+:where(.css-dev-only-do-not-override-1m62vyb).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  position: relative;
+  background-color: #ffffff !important;
+  border: 1px solid #d9d9d9;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.ant-btn-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submenu-active {
+  border-right: 2px solid #3e79f7;
+  color: #3e79f7;
+  background-color: #ebf1ff;
+}
+
+
+.flip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
