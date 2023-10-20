@@ -79,7 +79,7 @@ const ClaimReward = () => {
 
     return (
         <>
-            <h1 data-aos-delay={1000} data-aos="fade-down" className="text-[#C9FF28] text-center font-semibold">
+            <h1 data-aos-delay={1000} data-aos="fade-down" className="text-[#fff] text-center font-semibold">
                 You recieved an Gift. Click on the Envelope to open it.
             </h1>
             <div className="flex flex-col gap-2 h-[80dvh] items-center justify-center">
