@@ -5,7 +5,7 @@ import { GlobalContext } from "../contexts/globalContext";
 import { DatePicker, TimePicker, ConfigProvider, theme, Modal, Spin, QRCode } from "antd";
 import dayjs from "dayjs";
 import CompanyHistoryCard from "../components/history";
-
+import 'aos/dist/aos.css';
 
 const CreateLink = () => {
     const isMounted = useRef(false);
@@ -168,7 +168,7 @@ const CreateLink = () => {
                     >
                         <div data-aos-delay={200} data-aos="fade-up" className="flex flex-col gap-2">
                             <label className="text-[#C9FF28] font-semibold text-sm uppercase">Time Limit *</label>
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-col md:flex-row items-center gap-2">
                                 <DatePicker
                                     className="bg-white px-2 py-3 rounded-md w-full focus:outline-none font-[Inter] font-semibold"
                                     onChange={e => setTimeLimitDate(e)}

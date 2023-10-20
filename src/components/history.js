@@ -84,7 +84,7 @@ const CompanyHistoryCard: FC<CompanyHistoryCardProps> = ({ data = [], flagRefres
             dataSource.push({
                 sno: index + 1 + ')',
                 amount: <>{item.amount}</>,
-                url: <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">{item.url}</a>,
+                url: <a href={item.url} className="hover:underline underline-white underline-offset-4 hover:text-white" target="_blank" rel="noopener noreferrer nofollow">{item.url}</a>,
                 copy: <div className="flex items-center justify-end" onClick={e => handleCopyBtnClick(item.url, item.reclaim)}>
                     <Tooltip title={`${item.reclaim ? 'Reclaim funds' : 'Copy URL to clipboard'}`}>
                         <Button type="primary">

@@ -6,7 +6,8 @@ import { GlobalContext } from "../contexts/globalContext";
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useNavigate, useParams } from "react-router-dom";
 import { FrownOutlined } from '@ant-design/icons';
-
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
 const ClaimReward = () => {
     const { id } = useParams();
@@ -24,6 +25,7 @@ const ClaimReward = () => {
     useEffect(() => {
         if (!isMounted.current) {
             isMounted.current = true;
+            Aos.init();
             if (!id || id === '') {
                 notification.error({
                     message: 'Invalid URL',
@@ -77,7 +79,10 @@ const ClaimReward = () => {
 
     return (
         <>
-            <div className="flex flex-col gap-2 h-[90dvh] items-center justify-center">
+            <h1 data-aos-delay={1000} data-aos="fade-down" className="text-[#C9FF28] text-center font-semibold">
+                You recieved an Gift. Click on the Envelope to open it.
+            </h1>
+            <div className="flex flex-col gap-2 h-[80dvh] items-center justify-center">
                 <div className={`${processing ? 'animate-pulse cursor-not-allowed' : ''}`}>
                     <div onClick={handleEnvelopeClick} className={`envelope animate__animated animate__fadeInDownBig relative cursor-pointer ${isCardOpen ? 'card-open' : ''}`}>
                         <div className="back relative w-[250px] h-[200px] bg-[#e50530]"></div>
@@ -95,7 +100,7 @@ const ClaimReward = () => {
                                                     duration={3000}
                                                     particleCount={250}
                                                     width={window.innerWidth}
-                                                    height={window.innerHeight}
+                                                    height={document.documentElement.scrollHeight}
                                                 />}
                                                 <span className="text-xl">🎉</span>
                                             </div>
@@ -104,7 +109,7 @@ const ClaimReward = () => {
                                 </>
                                 || <>
                                     <div className="flex justify-center text-2xl mt-[20px] font-bold animate__animated animate__fadeInUp"><FrownOutlined className="text-6xl" /></div>
-                                    <div className="text-center text-lg mt-[20px] font-bold animate__animated animate__fadeInUp">Error</div>
+                                    <div className="text-center text-[#C9FF28] text-lg mt-[20px] font-bold animate__animated animate__fadeInUp">Error</div>
                                 </>
                             }
                         </div>

@@ -9,7 +9,7 @@ import CompanyHistoryCard from './components/history';
 function App() {
   return (<>
     <Navbar />
-    <div className="my-8 md:mx-20 mx-12">
+    <div className="my-8 md:mx-20 mx-8">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/redeem/:id?" element={<ClaimReward />} />
