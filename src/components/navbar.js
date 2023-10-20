@@ -2,6 +2,7 @@ import { Popover } from "antd";
 import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineProfile, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const Navbar = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -21,7 +22,8 @@ const Navbar = () => {
                     <Link to={''}>
                         <div className="flex items-center gap-2 font-semibold">
                             <AiOutlineUser className="text-2xl" />
-                            LOGIN
+                            {/* LOGIN */}
+                            <ConnectButton />
                             {/* {tmpAddress.slice(0, 6)}...{tmpAddress.slice(-4)} */}
                         </div>
                     </Link>
