@@ -13,7 +13,8 @@ const Navbar = () => {
                     <h1 className="text-white text-xl font-[Inter]">
                         <Link to={'/'}>LOGO</Link>
                     </h1>
-                    <Link to={''}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Marketplace</span></Link>
+                    <Link to={'/redeem'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Redeem</span></Link>
+                    <Link to={'/create-link'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Create</span></Link>
                 </div>
                 <div className="col-span-6"></div>
                 <div className="col-span-3 flex items-center justify-end text-[#C9FF28] text-sm md:text-base">
@@ -28,7 +29,8 @@ const Navbar = () => {
                         <Popover
                             content={<div className="w-[250px]" onClick={e => setMenuOpen(false)}>
                                 <div className="flex flex-col gap-3">
-                                    <Link to={''}><span className="text-[#C9FF28] font-semibold uppercase">Marketplace</span></Link>
+                                    <Link to={'/redeem'}><span className="text-[#C9FF28] font-semibold uppercase">Redeem</span></Link>
+                                    <Link to={'/create-link'}><span className="text-[#C9FF28] font-semibold uppercase">Create</span></Link>
                                     <Link to={''}><span className="text-[#C9FF28] font-semibold uppercase">Login</span></Link>
                                     {/* <Link to={''}><span className="text-[#C9FF28] font-semibold uppercase">{tmpAddress.slice(0, 6)}...{tmpAddress.slice(-4)}</span></Link> */}
                                 </div>
