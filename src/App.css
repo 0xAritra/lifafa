@@ -82,3 +82,8 @@ button[disabled] {
 .share-modal .ant-modal-content {
   padding: 0px !important;
 }
+
+.ant-btn-reclaim-btn {
+  background: #c9ff28 !important;
+  color: black;
+}

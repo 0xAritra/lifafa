@@ -284,7 +284,7 @@ const CreateLink = () => {
                     </div>
                 </form>
                 <div className="my-4">
-                    <h1 data-aos-delay={500} data-aos="fade-up" className="text-white font-semibold flex items-center text-xl gap-1"><AiOutlineFieldTime className="text-2xl" /> HISTORY</h1>
+                    <h1 data-aos-delay={500} data-aos="fade-up" className="text-white font-semibold flex items-center text-xl gap-1 uppercase"><AiOutlineFieldTime className="text-2xl" /> My Envelopes</h1>
                     <div data-aos-delay={600} data-aos="fade-up">
                         <Spin spinning={historyLoading}>
                             <CompanyHistoryCard data={history} flagRefresh={loadPageData} />

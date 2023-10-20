@@ -3,6 +3,8 @@ import { useContext, useEffect, useRef } from "react";
 import { GlobalContext } from "../contexts/globalContext";
 import { AiOutlineCopy, AiOutlineReload } from 'react-icons/ai';
 import { FC } from 'react';
+import { waitForTransaction, writeContract } from "@wagmi/core";
+import { contract_abi, contract_address } from "../constants";
 
 // interface CompanyHistoryCardProps {
 //     data: {
@@ -12,6 +14,11 @@ import { FC } from 'react';
 //     }[];
 //     flagRefresh: () => void;
 // }
+function extractIdFromUrl(url) {
+    const parts = url.split('/');
+    const id = parts[parts.length - 1];
+    return id;
+}
 const CompanyHistoryCard = () => {
     const { message, notification, history } = useContext(GlobalContext);
     const isMounted = useRef(false);
@@ -40,13 +47,33 @@ const CompanyHistoryCard = () => {
         });
     }
 
-    const backendRequest = async (data = {}) => {
-        return new Promise((resolve, reject) => { // {status: '<success || any error message>', link: '<url>'}
-            setTimeout(() => {
+    const backendRequest = async (data = 0) => {
+        return new Promise(async (resolve, reject) => { // {status: '<success || any error message>', link: '<url>'}
+            // setTimeout(() => {
+            //     resolve({
+            //         status: 'success',
+            //     })
+            // }, 2000)
+            try {
+                var { hash } = await writeContract({
+                    address: contract_address,
+                    abi: contract_abi,
+                    functionName: 'reclaim',
+                    args: [data]
+                })
+                var transaction = await waitForTransaction({
+                    hash: hash
+                })
+                console.log(transaction);
                 resolve({
                     status: 'success',
-                })
-            }, 2000)
+                });
+            } catch (err) {
+                notification.error({
+                    message: 'Failed to reclaim',
+                    description: err,
+                });
+            }
         })
     }
 
@@ -74,12 +101,15 @@ const CompanyHistoryCard = () => {
                 onOk: async () => {
                     //backend call
                     message.loading('Reclaiming funds...', 30);
-                    var resp = await backendRequest({ url: url });
+                    var resp = await backendRequest(extractIdFromUrl(url));
                     message.destroy();
-                    if (resp.status === 'success') {
+                    if (resp.status == 'success') {
                         // flagRefresh();
                         history.set([]);
                         history.reload.set(true);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000)
                         notification.success({
                             message: 'Reclaimed successfully',
                             description: 'The funds has been reclaimed to your account',
@@ -100,15 +130,25 @@ const CompanyHistoryCard = () => {
             dataSource.push({
                 sno: index + 1 + ')',
                 amount: <>{item.amount}</>,
-                url: <a href={item.url} className="hover:underline underline-white underline-offset-4 hover:text-white" target="_blank" rel="noopener noreferrer nofollow">{item.url}</a>,
+                url: <>
+                    {
+                        item.amount != 0 && <a href={item.url} className="hover:underline underline-white underline-offset-4 hover:text-white" target="_blank" rel="noopener noreferrer nofollow">{item.url}</a>
+                        || <span className="text-gray-400 cursor-not-allowed"><del>{item.url}</del></span>
+                    }
+                </>,
                 copy: <div className="flex items-center justify-end" onClick={e => handleCopyBtnClick(item.url, item.reclaim)}>
-                    <Tooltip title={`${item.reclaim ? 'Reclaim funds' : 'Copy URL to clipboard'}`}>
-                        <Button type="primary">
-                            {
-                                item.reclaim && <AiOutlineReload className="text-lg" />
-                                || <AiOutlineCopy className="text-lg" />
-                            }
-                        </Button>
+                    <Tooltip title={`${(item.reclaim && item.amount != 0) ? 'Reclaim funds' : 'Copy URL to clipboard'}`}>
+                        {
+                            item.amount != 0 && <Button type={`${(item.reclaim && item.amount != 0) ? 'reclaim-btn' : 'primary'}`}>
+                                {
+                                    (item.reclaim && item.amount != 0) && <AiOutlineReload className="text-lg" />
+                                    || <AiOutlineCopy className="text-lg" />
+                                }
+                            </Button>
+                            || <Button type="primary" disabled>
+                                <AiOutlineCopy className="text-lg" />
+                            </Button>
+                        }
                     </Tooltip>
                 </div>
             })
