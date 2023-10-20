@@ -2,7 +2,7 @@ import Aos from "aos";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineArrowRight, AiOutlineFieldTime } from "react-icons/ai";
 import { GlobalContext } from "../contexts/globalContext";
-import { DatePicker, TimePicker, ConfigProvider, theme, Modal, Spin } from "antd";
+import { DatePicker, TimePicker, ConfigProvider, theme, Modal, Spin, QRCode } from "antd";
 import dayjs from "dayjs";
 import CompanyHistoryCard from "../components/history";
 
@@ -18,6 +18,8 @@ const CreateLink = () => {
     const [history, setHistory] = useState([]); // [{url: 'some url', amount: 1000}]
     const [historyLoading, setHistoryLoading] = useState(true);
     const yesterday = dayjs().subtract(1, 'day').endOf('day');
+    const [share_url, setShare_url] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     useEffect(() => {
@@ -117,11 +119,39 @@ const CreateLink = () => {
                         description: resp.status,
                     });
                 } else {
-                    
+                    setShare_url(resp.link);
+                    setIsModalOpen(true);
                 }
             }
         });
 
+    }
+    const openSystemShareMenu = () => {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Red Envelope',
+                text: 'Red Envelope',
+                url: share_url
+            }).then(() => {
+                message.success('Shared successfully');
+            })
+                .catch(console.error);
+        } else {
+            notification.error({
+                message: 'Failed to share',
+                description: 'Your browser does not support this feature',
+            });
+        }
+    }
+    const copytoclipboard = () => {
+        navigator.clipboard.writeText(share_url).then(function () {
+            message.success('Copied to clipboard');
+        }, function (err) {
+            notification.error({
+                message: 'Failed to copy to clipboard',
+                description: err,
+            });
+        });
     }
     return (
         <>
@@ -169,14 +199,41 @@ const CreateLink = () => {
                     </div>
                 </form>
                 <div className="my-4">
-                    <h1 className="text-white font-semibold flex items-center text-xl gap-1"><AiOutlineFieldTime className="text-2xl" /> HISTORY</h1>
-                    <div>
+                    <h1 data-aos-delay={500} data-aos="fade-up" className="text-white font-semibold flex items-center text-xl gap-1"><AiOutlineFieldTime className="text-2xl" /> HISTORY</h1>
+                    <div data-aos-delay={600} data-aos="fade-up">
                         <Spin spinning={historyLoading}>
                             <CompanyHistoryCard data={history} flagRefresh={loadPageData} />
                         </Spin>
                     </div>
                 </div>
             </div>
+            <ConfigProvider
+                theme={{
+                    algorithm: theme.lightAlgorithm,
+                }}
+            >
+                <Modal
+                    open={isModalOpen}
+                    title={null}
+                    footer={null}
+                    width={450}
+                    className="font-[Montserrat] share-modal"
+                    onCancel={e => setIsModalOpen(false)}
+                >
+                    <div className="pt-4">
+                        <div className="flex items-center justify-center flex-col h-full my-6">
+                            <div id="qr-code">
+                                <QRCode size={170} value={share_url} color="#c9ff28" bgColor="#0b0a0a" />
+                            </div>
+                            <p className="mx-8 font-semibold my-4">The link is generated and your red envelope is ready to be shared.</p>
+                        </div>
+                        <div className="grid grid-cols-2">
+                            <div onClick={openSystemShareMenu} className="flex justify-center items-center bg-[#616f39] p-3 cursor-pointer text-white font-semibold">Share</div>
+                            <div onClick={copytoclipboard} className="flex justify-center items-center bg-[#a7d129] p-3 cursor-pointer text-white font-semibold">Copy</div>
+                        </div>
+                    </div>
+                </Modal>
+            </ConfigProvider>
         </>
     )
 }

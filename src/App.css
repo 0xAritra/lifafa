@@ -78,3 +78,7 @@ button[disabled] {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
+
+.share-modal .ant-modal-content {
+  padding: 0px !important;
+}
