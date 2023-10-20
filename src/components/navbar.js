@@ -19,14 +19,11 @@ const Navbar = () => {
                 </div>
                 <div className="col-span-6"></div>
                 <div className="col-span-3 flex items-center justify-end text-[#C9FF28] text-sm md:text-base">
-                    <Link to={''}>
-                        <div className="flex items-center gap-2 font-semibold">
-                            <AiOutlineUser className="text-2xl" />
-                            {/* LOGIN */}
-                            <ConnectButton />
-                            {/* {tmpAddress.slice(0, 6)}...{tmpAddress.slice(-4)} */}
-                        </div>
-                    </Link>
+                    <div className="flex items-center gap-2 font-semibold">
+                        {/* LOGIN */}
+                        <ConnectButton />
+                        {/* {tmpAddress.slice(0, 6)}...{tmpAddress.slice(-4)} */}
+                    </div>
                     <div className="p-2 rounded-md cursor-pointer ml-2 md:hidden">
                         <Popover
                             content={<div className="w-[250px]" onClick={e => setMenuOpen(false)}>

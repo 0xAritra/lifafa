@@ -4,12 +4,14 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../contexts/globalContext";
+import { readContract } from "@wagmi/core";
+import { contract_abi, contract_address } from "../constants";
 
 const RedeemLanding = () => {
     const isMounted = useRef(false);
     const [redeemId, setRedeemId] = useState(null);
     const navigate = useNavigate();
-    const {message, notification} = useContext(GlobalContext);
+    const { message, notification } = useContext(GlobalContext);
 
     useEffect(() => {
         if (!isMounted.current) {
@@ -18,11 +20,23 @@ const RedeemLanding = () => {
         }
     }, [])
 
-    const handleFormSubmit = e => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         //validate redeemId
         if (!redeemId || redeemId === '') {
             message.error('Please enter a valid redeem id');
+            return;
+        }
+        message.loading('Validating redeem id...', 30);
+        var data = await readContract({
+            address: contract_address,
+            abi: contract_abi,
+            functionName: 'isInvalidID',
+            args: [redeemId]
+        })
+        message.destroy();
+        if (data) {
+            message.error('Invalid redeem id');
             return;
         }
         navigate(`/redeem/${redeemId}`);

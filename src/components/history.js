@@ -1,19 +1,34 @@
-import { Button, Modal, Table, Tooltip } from "antd";
-import { useContext } from "react";
+import { Button, Modal, Spin, Table, Tooltip } from "antd";
+import { useContext, useEffect, useRef } from "react";
 import { GlobalContext } from "../contexts/globalContext";
 import { AiOutlineCopy, AiOutlineReload } from 'react-icons/ai';
 import { FC } from 'react';
 
-interface CompanyHistoryCardProps {
-    data: {
-        url: string;
-        amount: number;
-        reclaim: Boolean;
-    }[];
-    flagRefresh: () => void;
-}
-const CompanyHistoryCard: FC<CompanyHistoryCardProps> = ({ data = [], flagRefresh = () => { } }) => {
-    const { message, notification } = useContext(GlobalContext);
+// interface CompanyHistoryCardProps {
+//     data: {
+//         url: string;
+//         amount: number;
+//         reclaim: Boolean;
+//     }[];
+//     flagRefresh: () => void;
+// }
+const CompanyHistoryCard = () => {
+    const { message, notification, history } = useContext(GlobalContext);
+    const isMounted = useRef(false);
+    useEffect(() => {
+        if (!isMounted.current) {
+            isMounted.current = true;
+            if (history.get.length === 0) {
+                const interval = setInterval(() => {
+                    if (history.get().length > 0) {
+                        clearInterval(interval);
+                        return;
+                    }
+                    history.reload.set(true);
+                }, 5000)
+            }
+        }
+    }, [])
     const copytoclipboard = (text) => {
         navigator.clipboard.writeText(text).then(function () {
             message.success('Copied to clipboard');
@@ -62,8 +77,9 @@ const CompanyHistoryCard: FC<CompanyHistoryCardProps> = ({ data = [], flagRefres
                     var resp = await backendRequest({ url: url });
                     message.destroy();
                     if (resp.status === 'success') {
-                        flagRefresh();
-                        message.loading('Refreshing...', 30);
+                        // flagRefresh();
+                        history.set([]);
+                        history.reload.set(true);
                         notification.success({
                             message: 'Reclaimed successfully',
                             description: 'The funds has been reclaimed to your account',
@@ -99,11 +115,13 @@ const CompanyHistoryCard: FC<CompanyHistoryCardProps> = ({ data = [], flagRefres
         })
     }
 
-    if (data.length > 0) {
-        mapElement(data);
-    } else {
-        // mapElement(sampleData);
-    }
+    mapElement(history.get());
+
+    // if (data.length > 0) {
+    //     // mapElement(data);
+    // } else {
+    //     // mapElement(sampleData);
+    // }
 
     const columns = [
         {
@@ -131,14 +149,19 @@ const CompanyHistoryCard: FC<CompanyHistoryCardProps> = ({ data = [], flagRefres
         <>
             <div className="my-3">
                 <div className="box-shadow p-3 py-5 rounded-md ">
-                    <div className="overflow-x-auto relative">
-                        <Table
-                            dataSource={dataSource}
-                            columns={columns}
-                            pagination={false}
-                            showHeader={false}
-                        />
-                    </div>
+                    <Spin
+                        spinning={history.get().length === 0}
+                        tip="Loading..."
+                    >
+                        <div className="overflow-x-auto relative">
+                            <Table
+                                dataSource={dataSource}
+                                columns={columns}
+                                pagination={false}
+                                showHeader={false}
+                            />
+                        </div>
+                    </Spin>
                 </div>
             </div>
         </>

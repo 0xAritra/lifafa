@@ -1,11 +1,8 @@
 pragma solidity ^0.8.20;
  
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
  
-contract RedEnvelope is Ownable {
- 
-    constructor() Ownable(msg.sender) {}
+contract RedEnvelope {
  
     struct Envelope {
         uint256 amount;
@@ -17,21 +14,11 @@ contract RedEnvelope is Ownable {
     }
  
     event EnvelopeCreated(uint256 id);
-    event ClaimAttempt(
-        uint256 id,
-        uint256 amount,
-        uint256 creationTime,
-        uint256 timeLimit,
-        address creator,
-        address token,
-        bool alreadyClaimed,
-        uint256 balance
-    );
  
     mapping(uint256 => Envelope) public envelopes;
     mapping(address => uint256[]) public history;
  
-    function createEnvelope(uint256 _timeLimitInSeconds, address _token) public payable onlyOwner returns (uint256) {
+    function createEnvelope(uint256 _timeLimitInSeconds, address _token) public payable returns (uint256) {
         require(msg.value > 0, "Amount should be greater than 0");
  
         uint256 id = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % (10**18);
@@ -48,7 +35,7 @@ contract RedEnvelope is Ownable {
         return id;
     }
 
-    function claim(uint256 _id) public {
+    function claim(uint256 _id) public returns (uint256) {
         require(!isInvalidID(_id), "Invalid ID");
         require(getTimeLeft(_id) > 0, "Time limit exceeded");
         require(envelopes[_id].amount > 0, "No funds available");
@@ -63,6 +50,7 @@ contract RedEnvelope is Ownable {
         envelopes[_id].claimed[msg.sender] = true;
  
         payable(msg.sender).transfer(claimAmount);
+        return claimAmount;
     }
 
     function addToEnvelope(uint256 _id) public payable {
@@ -80,9 +68,10 @@ contract RedEnvelope is Ownable {
  
         uint256 remainingAmount = envelopes[_id].amount;
         envelopes[_id].amount = 0;
- 
-        payable(msg.sender).transfer(remainingAmount);
-    }
+        (bool sent, bytes memory data) = payable(msg.sender).call{value: remainingAmount}("");
+        require(sent, "Failed to send Ether");
+        return remainingAmount;
+    } 
  
     function getRandomAmount(uint256 _max) private view returns (uint256) {
         return uint256(keccak256(abi.encodePacked(block.timestamp))) % _max;
