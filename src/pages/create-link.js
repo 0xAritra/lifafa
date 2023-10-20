@@ -1,9 +1,10 @@
 import Aos from "aos";
 import { useContext, useEffect, useRef, useState } from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineFieldTime } from "react-icons/ai";
 import { GlobalContext } from "../contexts/globalContext";
-import { DatePicker, TimePicker, ConfigProvider, theme, Modal } from "antd";
+import { DatePicker, TimePicker, ConfigProvider, theme, Modal, Spin } from "antd";
 import dayjs from "dayjs";
+import CompanyHistoryCard from "../components/history";
 
 
 const CreateLink = () => {
@@ -14,7 +15,8 @@ const CreateLink = () => {
     const [timeLimitDate, setTimeLimitDate] = useState(null);
     const [NFTSAddress, setNFTSAddress] = useState(null);
     const { notification, message } = useContext(GlobalContext);
-    const [history, setHistory] = useState([]); // [{title: 'some title', url: 'some url', amount: 1000}]
+    const [history, setHistory] = useState([]); // [{url: 'some url', amount: 1000}]
+    const [historyLoading, setHistoryLoading] = useState(true);
     const yesterday = dayjs().subtract(1, 'day').endOf('day');
 
 
@@ -22,11 +24,11 @@ const CreateLink = () => {
         if (!isMounted.current) {
             isMounted.current = true;
             Aos.init();
+            loadPageData();
         }
     }, [])
 
     const backendRequest = async (data = {}) => {
-
         return new Promise((resolve, reject) => { // {status: '<success || any error message>', link: '<url>'}
             setTimeout(() => {
                 resolve({
@@ -34,6 +36,30 @@ const CreateLink = () => {
                     link: window.location.protocol + '//' + window.location.hostname + '/redeem/' + 'some_id'
                 })
             }, 2000)
+        })
+    }
+
+    const backend_fetchHistory = async () => {
+        return new Promise((resolve, reject) => { // {status: '<success || any error message>', link: '<url>'}
+            setTimeout(() => {
+                resolve({
+                    status: 'success',
+                    data: [{
+                        url: 'https://www.google.com',
+                        amount: 100,
+                        reclaim: true
+                    }]
+                })
+            }, 2000)
+        })
+    }
+
+    function loadPageData() {
+        setHistoryLoading(true);
+        backend_fetchHistory().then(resp => {
+            setHistory(resp.data);
+            message.destroy();
+            setHistoryLoading(false);
         })
     }
 
@@ -91,7 +117,7 @@ const CreateLink = () => {
                         description: resp.status,
                     });
                 } else {
-
+                    
                 }
             }
         });
@@ -142,6 +168,14 @@ const CreateLink = () => {
                         <button data-aos-delay={500} data-aos="fade-up" className="bg-[#c9ff28] rounded-sm flex gap-2 px-3 py-2 items-center font-semibold">Generate Link <AiOutlineArrowRight className="text-xl" /></button>
                     </div>
                 </form>
+                <div className="my-4">
+                    <h1 className="text-white font-semibold flex items-center text-xl gap-1"><AiOutlineFieldTime className="text-2xl" /> HISTORY</h1>
+                    <div>
+                        <Spin spinning={historyLoading}>
+                            <CompanyHistoryCard data={history} flagRefresh={loadPageData} />
+                        </Spin>
+                    </div>
+                </div>
             </div>
         </>
     )
