@@ -1,0 +1,86 @@
+.text:before,
+.text:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    border-radius: 10px;
+    background-color: #333;
+    height: 20px;
+    top: 60px;
+}
+
+.text:before {
+    left: 108px;
+    transform: rotate(-25deg);
+}
+
+.text:after {
+    left: 118px;
+    transform: rotate(25deg);
+}
+
+.front {
+    position: absolute;
+    border-right: 130px solid #d8072e;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    height: 0;
+    width: 0;
+    top: 0;
+    left: 120px;
+    z-index: 3;
+}
+
+.front:before {
+    content: "";
+    position: absolute;
+    border-left: 130px solid #d8072e;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    height: 0;
+    width: 0;
+    top: -100px;
+    left: -120px;
+}
+
+.front:after {
+    content: "";
+    position: absolute;
+    border-bottom: 105px solid #e50530;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    height: 0;
+    width: 0;
+    top: -5px;
+    left: -120px;
+}
+
+.top {
+    position: absolute;
+    border-top: 105px solid #e50530;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    height: 0;
+    width: 0;
+    top: 0;
+    transform-origin: top;
+    transition: .4s;
+}
+
+.shadow {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 10px;
+    top: 220px;
+    border-radius: 50%;
+}
+
+.card-open .top {
+    transform: rotateX(160deg);
+}
+
+.card-open .letter {
+    transform: translateY(-100px);
+    z-index: 2;
+}
