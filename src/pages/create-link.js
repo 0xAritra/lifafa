@@ -135,7 +135,12 @@ const CreateLink = () => {
             }).then(() => {
                 message.success('Shared successfully');
             })
-                .catch(console.error);
+                .catch(err => {
+                    notification.error({
+                        message: 'Failed to share',
+                        description: err,
+                    });
+                });
         } else {
             notification.error({
                 message: 'Failed to share',
@@ -159,7 +164,7 @@ const CreateLink = () => {
                 <form className="flex gap-8 flex-col" onSubmit={handleFormSubmit}>
                     <div data-aos-delay={100} data-aos="fade-up" className="flex flex-col gap-2">
                         <label className="text-[#C9FF28] font-semibold text-sm uppercase">Enter funds to be added *</label>
-                        <input value={funds} onChange={e => setFunds(e.target.value)} className="bg-white px-2 py-3 rounded-md w-full focus:outline-none font-[Inter] font-semibold" />
+                        <input type="number" value={funds} onChange={e => setFunds(e.target.value)} className="bg-white px-2 py-3 rounded-md w-full focus:outline-none font-[Inter] font-semibold" />
                     </div>
                     <ConfigProvider
                         theme={{
@@ -178,7 +183,7 @@ const CreateLink = () => {
                                         return current && current < yesterday;
                                     }}
                                 />
-                                <div data-aos-delay={300} data-aos="fade-up" className="w-full">
+                                <div data-aos="fade-up" className="w-full">
                                     <TimePicker
                                         className="bg-white px-2 py-3 rounded-md w-full focus:outline-none font-[Inter] font-semibold"
                                         onChange={e => setTimeLimit(e)}
@@ -190,12 +195,12 @@ const CreateLink = () => {
                             </div>
                         </div>
                     </ConfigProvider>
-                    <div data-aos-delay={400} data-aos="fade-up" className="flex flex-col gap-2">
+                    <div data-aos-delay={300} data-aos="fade-up" className="flex flex-col gap-2">
                         <label className="text-[#C9FF28] font-semibold text-sm uppercase">NFTS address *</label>
                         <input value={NFTSAddress} onChange={e => setNFTSAddress(e.target.value)} className="bg-white px-2 py-3 rounded-md w-full focus:outline-none font-[Inter] font-semibold" />
                     </div>
                     <div className="my-4 flex ">
-                        <button data-aos-delay={500} data-aos="fade-up" className="bg-[#c9ff28] rounded-sm flex gap-2 px-3 py-2 items-center font-semibold">Generate Link <AiOutlineArrowRight className="text-xl" /></button>
+                        <button data-aos-delay={400} data-aos="fade-up" className="bg-[#c9ff28] rounded-sm flex gap-2 px-3 py-2 items-center font-semibold">Generate Link <AiOutlineArrowRight className="text-xl" /></button>
                     </div>
                 </form>
                 <div className="my-4">
