@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="https://sentinel-ai.webxspark.com">
+    <img alt = "Lifafa Logo" src = "./vector-logo.png">
+  </a>
+</p>
+<h1 align="center" >Lifafa : Redifining Gifting </h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
+</p>
+Lifafa, your gateway to modern gifting, revolutionizes the age-old tradition of giving with its innovative digital red envelope platform. By seamlessly blending tradition with technology, Lifafa allows users to create, share, and experience the joy of giving in the digital age. With Lifafa, you can personalize your gifts, add an element of surprise, and enhance the entire gifting experience by incorporating various digital assets, all in one secure and user-friendly platform
+<br>
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+Gift Pool Creation: Users can deposit a chosen total value of digital assets into a gift pool.
 
-### `npm start`
+Purpose and Link Creation: Senders specify the purpose of the red envelope and generate a unique link.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Link Distribution: Senders can easily share the unique link with intended recipients.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+NFT Security: An optional feature allows senders to secure the process using NFTs for added protection and exclusivity.
 
-### `npm test`
+Recipient Engagement: Recipients follow the link to access the gift pool and experience the gifting process.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Randomized Prizes: Recipients are presented with randomized prizes upon entering the gift pool, adding an exciting element of surprise.
 
-### `npm run build`
+Claiming the Gift: Recipients can easily claim their prizes with a simple and user-friendly "claim" process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Contribution Option: Recipients have the choice to contribute additional digital assets to the gift pool, enhancing the overall value before passing it on to others.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Transparency and Ledger: Maintain a transparent and immutable ledger of all red envelope transactions, providing users with a complete history of distributions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Multi-Asset Support: Lifafa accommodates various digital assets, including cryptocurrencies and NFTs, offering a diverse range of gifting options.
 
-### `npm run eject`
+Security and Tamper Resistance: The platform ensures the security and tamper resistance of the gift pool and its contents.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+User-Friendly Interface: A user-friendly interface simplifies the gifting and claiming process, making it accessible to users of all backgrounds.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Mobile Accessibility: Users can access and engage with Lifafa through mobile devices, ensuring convenience and flexibility.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Personalization: Senders can personalize the red envelope by specifying its purpose and contents, making each gift unique.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Additional Gifting Features: Lifafa may include additional features such as virtual spinner games and leaderboards to enhance the gifting experience.
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ✅ How Lifafa Works
 
-### Code Splitting
+Lifafa, our innovative digital red envelope platform, introduces an engaging and seamless process for digital gifting. It commences with the sender depositing a specified total value of digital assets, which can encompass cryptocurrencies, NFTs, and an array of digital assets, forming the foundation of a dynamic gift pool. Adding a personal touch to the gifting experience, the sender customizes the gift by specifying its purpose, and Lifafa generates a unique link associated with the gift pool, ensuring each gift is distinct and memorable. The sender shares this unique link with the intended recipients, granting them access to the gift pool, which may be further secured through the optional use of a non-fungible token (NFT) to add an extra layer of security and exclusivity. Recipients, upon receiving the unique link, are drawn into the immersive Lifafa platform, unveiling a world of digital surprises. The heart of the experience lies in the revelation of randomized prizes within the gift pool, injecting an element of unpredictability and excitement, enhancing the joy of gifting. The process for recipients to claim their prizes is streamlined through the Lifafa platform, featuring a user-friendly "claim" button for a hassle-free experience. Moreover, Lifafa fosters a spirit of generosity as recipients have the choice to contribute additional digital assets to the gift pool, amplifying the overall value of the gift and enabling a ripple effect of generosity as the gift continues to circulate among others. This combination of customization, security, engagement, and surprise ensures Lifafa is at the forefront of modern digital gifting, revitalizing the tradition of gift-giving in the digital age.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<br>
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<br>
 
-### Making a Progressive Web App
+## 🌱 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Developers and emergency services professionals who are interested in enhancing the Lifafa system are encouraged to contribute. To get involved, simply fork the repository and submit a pull request with your proposed changes. We value your contributions and appreciate your efforts in making Lifafa even more effective in emergency situations. Together, we can continually improve and optimize the system to better serve the needs of emergency services and the communities they protect.
+<br>
 
-### Advanced Configuration
+## ©️ License
+Sentinel.AI is licensed under the MPL-2.0 License. See <a href="LICENSE.txt">LICENSE</a> for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<br>
 
-### Deployment
+## 📞 Contact Us
+If you have any questions or feedback about the Sentinel.AI system, please don't hesitate to contact us - 
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="https://linktr.ee/prayasu"> Prayasu Satapathy </a> <br>
+<a href="https://linktr.ee/AlanChristofer"> Alan Christofer </a> <br>
+<a href="https://linktr.ee/"> Siddhartha Bhattacharjee </a> <br>
+<a href="https://linktr.ee/"> Aritra Saha </a> <br>
