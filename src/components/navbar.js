@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineProfile, AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import logo from '../assets/lifafa.png'
 
 const Navbar = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ const Navbar = () => {
             <div className="grid grid-cols-12 my-10 md:mx-16 mx-8 font-[Montserrat]">
                 <div className="col-span-4 flex gap-12 items-center justify-between">
                     <h1 className="text-white text-xl font-[Inter]">
-                        <Link to={'/'}>LOGO</Link>
+                        <Link to={'/'}><img src={logo} className="" /></Link>
                     </h1>
                     <Link to={'/redeem'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Redeem</span></Link>
                     <Link to={'/create-link'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Create</span></Link>
