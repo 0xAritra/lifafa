@@ -66,12 +66,12 @@ Developers and emergency services professionals who are interested in enhancing 
 <br>
 
 ## ©️ License
-Sentinel.AI is licensed under the MPL-2.0 License. See <a href="LICENSE.txt">LICENSE</a> for details.
+Lifafa is licensed under the MPL-2.0 License. See <a href="LICENSE.txt">LICENSE</a> for details.
 
 <br>
 
 ## 📞 Contact Us
-If you have any questions or feedback about the Sentinel.AI system, please don't hesitate to contact us - 
+If you have any questions or feedback about the Lifafa, please don't hesitate to contact us - 
 <br>
 
 <a href="https://linktr.ee/prayasu"> Prayasu Satapathy </a> <br>
