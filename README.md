@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://sentinel-ai.webxspark.com">
-    <img alt = "Lifafa Logo" src = "./vector-logo.png">
+  <a href="https://unfold-2023-dev-b64b.vercel.app">
+    <img alt = "Lifafa Logo" width="250" src = "./src/assets/lifafa.png">
   </a>
 </p>
 <h1 align="center" >Lifafa : Redifining Gifting </h1>
@@ -44,6 +44,12 @@ Additional Gifting Features: Lifafa may include additional features such as virt
 
 <br>
 
+## 📷 Screenshots
+<img src="./img/1.jpeg">
+<img src="./img/2.jpeg">
+<img src="./img/3.jpeg">
+<img src="./img/4.jpeg">
+<img src="./img/5.gif">
 
 ## ✅ How Lifafa Works
 
