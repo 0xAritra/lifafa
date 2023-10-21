@@ -15,7 +15,8 @@ import { readContract, waitForTransaction } from '@wagmi/core'
 import bigInt from 'big-integer'
 import BigNumber from "bignumber.js";
 import { getWalletClient } from "@wagmi/core";
-import { getAccount } from "@wagmi/core";
+import { getAccount, readContracts } from "@wagmi/core";
+import { nft_abi, nft_address } from "../nfts-constants";
 
 const CreateLink = () => {
     const isMounted = useRef(false);
@@ -224,6 +225,17 @@ const CreateLink = () => {
     useEffect(() => {
         loadPageData();
     }, []);
+
+    const handleGetNFTAddress = async (e) => {
+        message.loading('Fetching NFT address...', 30);
+        var addr = await readContracts({
+            address: nft_address,
+            abi: nft_abi,
+            functionName: 'getNFTAddress',
+        })
+        message.destroy();
+        console.log(addr);
+    }
     return (
         <>
             <div className="font-[Montserrat] mx-6">
@@ -262,7 +274,10 @@ const CreateLink = () => {
                         </div>
                     </ConfigProvider>
                     <div data-aos-delay={300} data-aos="fade-up" className="flex flex-col gap-2">
-                        <label className="text-[#C9FF28] font-semibold text-sm uppercase">NFTS address *</label>
+                        <label className="text-[#C9FF28] font-semibold text-sm w-full flex justify-between items-center">
+                            <div>NFTs ADDRESS <small>(optional)</small></div>
+                            <div onClick={handleGetNFTAddress} className="text-sm cursor-pointer hover:underline underline-offset-4">Get your NFT Address</div>
+                        </label>
                         <input value={NFTSAddress} onChange={e => setNFTSAddress(e.target.value)} className="bg-white px-2 py-3 rounded-md w-full focus:outline-none font-[Inter] font-semibold" />
                     </div>
                     <div className="my-4 flex ">

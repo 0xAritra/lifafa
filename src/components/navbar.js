@@ -10,14 +10,15 @@ const Navbar = () => {
     return (
         <div className="border-b-[#2d2c2c] border-b-[2px]">
             <div className="grid grid-cols-12 my-10 md:mx-16 mx-8 font-[Montserrat]">
-                <div className="col-span-3 flex gap-12 items-center justify-between">
+                <div className="col-span-4 flex gap-12 items-center justify-between">
                     <h1 className="text-white text-xl font-[Inter]">
                         <Link to={'/'}>LOGO</Link>
                     </h1>
                     <Link to={'/redeem'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Redeem</span></Link>
                     <Link to={'/create-link'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">Create</span></Link>
+                    <Link to={'/my-nft'}><span className="text-[#C9FF28] hidden md:block font-semibold uppercase">My&nbsp;NFT</span></Link>
                 </div>
-                <div className="col-span-6"></div>
+                <div className="col-span-5"></div>
                 <div className="col-span-3 flex items-center justify-end text-[#C9FF28] text-sm md:text-base">
                     <div className="flex items-center gap-2 font-semibold">
                         {/* LOGIN */}
@@ -30,7 +31,7 @@ const Navbar = () => {
                                 <div className="flex flex-col gap-3">
                                     <Link to={'/redeem'}><span className="text-[#C9FF28] font-semibold uppercase">Redeem</span></Link>
                                     <Link to={'/create-link'}><span className="text-[#C9FF28] font-semibold uppercase">Create</span></Link>
-                                    <Link to={''}><span className="text-[#C9FF28] font-semibold uppercase">Login</span></Link>
+                                    <Link to={'/my-nft'}><span className="text-[#C9FF28] font-semibold uppercase">My&nbsp;NFT</span></Link>
                                     {/* <Link to={''}><span className="text-[#C9FF28] font-semibold uppercase">{tmpAddress.slice(0, 6)}...{tmpAddress.slice(-4)}</span></Link> */}
                                 </div>
                             </div>}

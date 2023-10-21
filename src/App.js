@@ -14,6 +14,7 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { avalancheFuji} from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import MyNft from './pages/my-nft';
 
 const { chains, publicClient } = configureChains(
   [avalancheFuji],
@@ -46,6 +47,7 @@ function App() {
             <Route path="/redeem" element={<RedeemLanding />} />
             <Route path="/redeem/:id?" element={<ClaimReward />} />
             <Route path="/create-link" element={<CreateLink />} />
+            <Route path="/my-nft" element={<MyNft />} />
           </Routes>
         </div>
       </RainbowKitProvider>
