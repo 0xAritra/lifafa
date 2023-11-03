@@ -12,7 +12,7 @@ import { polygonMumbai } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
 import MyNft from "./pages/my-nft"
-
+import { oktoWallet } from "@rainbow-me/rainbowkit/wallets"
 const { chains, publicClient } = configureChains(
   [polygonMumbai],
   [/* alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), */ publicProvider()]
